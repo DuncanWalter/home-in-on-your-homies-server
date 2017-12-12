@@ -7,16 +7,12 @@ import fs from 'mz/fs'
 const app = new Koa();
 const router = new Router();
 
-const public = '../../public';
+let publicPath = '../../public';
 const isFile = /\/.+\.[\w]+$/.test;
 const asFile = path => isFile(path) ? path : '/';
 
-const useOptions = opts => public = opts.public;
-const listen = app.listen;
-app.listen = port => {
-    app.use(router);
-    listen.call(app, port);
-}
+const useOptions = opts => publicPath = opts.public;
+
 
 //
 app.use(async (ctx, next) => {
@@ -36,7 +32,7 @@ app.use(async (ctx, next) => {
 
 // default behavior
 router.use(async (ctx, next) => {
-    const root = path.join(__dirname, public);
+    const root = path.join(__dirname, publicPath);
     const file = asFile(ctx.path);
     if(file == '/' || await fs.exists(path.join(root, file))){
         await send(ctx, asFile(ctx.path), {

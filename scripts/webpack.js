@@ -4,15 +4,19 @@ const path = require('path');
 const options = require('minimist')(process.argv.slice(2));
 const env = require('babel-preset-env');
 
-const plugins = (options => {
-    return options.dev ? [
+const plugins = [...(options => {
+    return options.prod ? [
         new UglifyPlugin(),
         new webpack.LoaderOptionsPlugin({
             minimize: true,
             debug: false,
         }),
     ] : [];
-})(options);
+})(options), 
+    new webpack.DefinePlugin({
+        argv: 'process.argv',
+    }),
+];
 
 const config = {
     entry: './src/index.js',
@@ -45,6 +49,7 @@ const config = {
             '~': path.join(__dirname, './../'),
         },
     },
+    externals: /^[^\.].+$/,
     plugins,
 };
 

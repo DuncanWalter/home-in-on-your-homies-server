@@ -1,8 +1,10 @@
-import { app, useOptions } from './components/app.js'
-import minimist from './minimist'
+import { app, useOptions } from './services/app.js'
+import minimist from 'minimist'
 
 // { port: number, public: string, lib: bool }
-const options = minimist(process.argv.slice(2));
+const options = minimist(argv.slice(2));
+
+console.log(options);
 
 useOptions(options);
 
@@ -19,7 +21,7 @@ switch(true){
         break;
     }
     default:{
-        throw Error('Either --port or -lib should be specified');
+        throw Error('Either --port or --lib should be specified');
         break;
     }
 }
