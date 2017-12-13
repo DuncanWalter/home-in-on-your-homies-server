@@ -1,7 +1,5 @@
 /node_modules/*
-/dist/*
 /public/*
 .*
 !.gitignore
 !.travis.yml
-!.npmignore
