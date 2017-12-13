@@ -11,7 +11,6 @@ if(!!options.port){
     // TODO: build site from package if necessary
     app.listen(options.port);
     console.log(`> HIOYH is live on port ${options.port}`);
-    break;
 }
 
 export { app }
