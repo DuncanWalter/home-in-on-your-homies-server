@@ -14,3 +14,4 @@ if(!!options.port){
 }
 
 export { app }
+export { useOptions }

@@ -67,11 +67,11 @@ const devOverlay = { };
 
 const prodOverlay = {
     plugins: [
-        (c => new c())(require('uglifyjs-webpack-plugin')),
-        new webpack.LoaderOptionsPlugin({
-            minimize: true,
-            debug: false,
-        }),
+        // (c => new c())(require('uglifyjs-webpack-plugin')),
+        // new webpack.LoaderOptionsPlugin({
+        //     minimize: true,
+        //     debug: false,
+        // }),
     ],
 };
 
